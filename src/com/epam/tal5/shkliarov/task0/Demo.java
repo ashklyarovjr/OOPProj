@@ -9,5 +9,14 @@ public class Demo {
         for (int i = 0; i < database.getAbiturients().length; i++) {
             System.out.println(database.getAbiturients()[i].toString());
         }
+        System.out.println();
+        Database.getAbituriensWithBadMarks(database.getAbiturients());
+
+        Database.getAbiturientsWithGoodMarksSum(database.getAbiturients());
+
+        Database.getAbiturientsWithHalfOfNormalSum(database.getAbiturients());
+
+        Database.getAbiturientsWithHighestSum(database.getAbiturients());
+
     }
 }

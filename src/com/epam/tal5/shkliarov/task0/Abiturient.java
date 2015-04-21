@@ -3,7 +3,7 @@ package com.epam.tal5.shkliarov.task0;
 import java.util.Arrays;
 import java.util.Random;
 
-public class Abiturient {
+public class Abiturient implements Comparable {
     private int id;
     private Names name;
     private Surnames surname;
@@ -127,19 +127,57 @@ public class Abiturient {
 
     private String randomPhone() {
         Random random = new Random();
-        return "+38-050-" + random.nextInt(1000) + "-" + random.nextInt(100) + "-" + random.nextInt(100);
+        return "+38-050-" + (random.nextInt(900)+100) + "-" + (random.nextInt(90) + 10) + "-" + (random.nextInt(90) + 10);
     }
 
     @Override
     public String toString() {
-        return "Abiturient{" +
-                "id=" + id +
-                ", name=" + name +
-                ", surname=" + surname +
-                ", parentname=" + parentname +
-                ", address=" + address +
-                ", phone=" + phone +
-                ", marks=" + Arrays.toString(marks) +
-                '}';
+        return "Abiturient: " +
+                "id: " + id +
+                ", Name: " + name +
+                ", Surname: " + surname +
+                ", Parentname: " + parentname +
+                ", Address: " + address +
+                ", Phone: " + phone +
+                ", Marks: " + Arrays.toString(marks);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Abiturient)) return false;
+
+        Abiturient that = (Abiturient) o;
+
+        if (id != that.id) return false;
+        if (name != that.name) return false;
+        if (surname != that.surname) return false;
+        if (parentname != that.parentname) return false;
+        if (address != that.address) return false;
+        if (phone != null ? !phone.equals(that.phone) : that.phone != null) return false;
+        return Arrays.equals(marks, that.marks);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (surname != null ? surname.hashCode() : 0);
+        result = 31 * result + (parentname != null ? parentname.hashCode() : 0);
+        result = 31 * result + (address != null ? address.hashCode() : 0);
+        result = 31 * result + (phone != null ? phone.hashCode() : 0);
+        result = 31 * result + (marks != null ? Arrays.hashCode(marks) : 0);
+        return result;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Abiturient abiturient = (Abiturient) o;
+        if (this.getId() > ((Abiturient) o).getId())
+            return 1;
+        if (this.getId()  < ((Abiturient) o).getId())
+            return -1;
+        return 0;
     }
 }

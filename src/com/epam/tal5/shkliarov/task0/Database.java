@@ -3,6 +3,7 @@ package com.epam.tal5.shkliarov.task0;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 
 public class Database {
     private Abiturient[] abiturients;
@@ -39,8 +40,8 @@ public class Database {
     private Abiturient[] abiturientsInit() {
         Abiturient[] abiturients = new Abiturient[20];
         id = 1;
-        for (int i = 0; i < abiturients.length; i++) {
-            abiturients[i] = new Abiturient(id);
+        for (int i = 1; i <= abiturients.length; i++) {
+            abiturients[i - 1] = new Abiturient(id);
             id++;
         }
         return abiturients;
@@ -48,22 +49,36 @@ public class Database {
 
     public static void getAbituriensWithBadMarks(Abiturient[] abiturients){
         int normal = getNormalMark();
+        HashSet<Abiturient> set = new HashSet<Abiturient>();
         for (int i = 0; i < abiturients.length; i++) {
             Abiturient abiturient = abiturients[i];
             for (int j = 0; j < abiturient.getMarks()[j]; j++) {
                 if (abiturient.getMarks()[j] < normal) {
-                    System.out.println(abiturient.toString());
+                    set.add(abiturients[i]);
                 }
             }
+        }
+        Object[] result = set.toArray();
+        Arrays.sort(result);
+        System.out.println("Abiturients with bad marks");
+        for (int i = 0; i < set.size(); i++) {
+            System.out.println(result[i].toString());
         }
     }
 
     public static void getAbiturientsWithGoodMarksSum(Abiturient[] abiturients){
         int normal = getNormalMarksSum();
+        HashSet<Abiturient> set = new HashSet<Abiturient>();
         for (int i = 0; i < abiturients.length; i++) {
             if (abiturients[i].getMarksSum() > normal) {
-                System.out.println(abiturients[i].toString());
+                set.add(abiturients[i]);
             }
+        }
+        Object[] result = set.toArray();
+        Arrays.sort(result);
+        System.out.println("Abiturients with good marks");
+        for (int i = 0; i < set.size(); i++) {
+            System.out.println(result[i].toString());
         }
     }
 
@@ -77,32 +92,39 @@ public class Database {
         return higher;
     }
 
-    public static void getAbiturientsWithHighestSum(Abiturient[] abiturients,int n) {
+    public static void getAbiturientsWithHighestSum(Abiturient[] abiturients) {
         int highest = getHighestMarksSum(abiturients);
-        ArrayList<Abiturient> goodGuys = new ArrayList<Abiturient>();
+        HashSet<Abiturient> goodGuys = new HashSet<Abiturient>();
         for (int i = 0; i < abiturients.length; i++) {
             if (abiturients[i].getMarksSum() == highest){
                 goodGuys.add(abiturients[i]);
             }
         }
-        for (int i = 0; i < n; i++) {
-            System.out.println(goodGuys.toArray()[i].toString());
+        Object[] result = goodGuys.toArray();
+        Arrays.sort(result);
+        System.out.println("Abiturients with the highest  marks sum");
+        for (int i = 0; i < result.length; i++) {
+            System.out.println(result[i].toString());
         }
     }
 
     public static void getAbiturientsWithHalfOfNormalSum(Abiturient[] abiturients) {
         int halfOfNormal = (int) getNormalMarksSum() / 2;
+        HashSet<Abiturient> set = new HashSet<Abiturient>();
         for (int i = 0; i < abiturients.length; i++) {
-            if (abiturients[i].getMarksSum() == halfOfNormal){
-                System.out.println(abiturients[i].toString());
+            if (abiturients[i].getMarksSum() <= halfOfNormal){
+                set.add(abiturients[i]);
             }
+        }
+        Object[] result = set.toArray();
+        Arrays.sort(result);
+        System.out.println("Abiturients with half of normal marks sum");
+        for (int i = 0; i < set.size(); i++) {
+            System.out.println(result[i].toString());
         }
     }
 
-    /*@Override
-   *//* public String toString() {
 
-    }*/
 
 
 
