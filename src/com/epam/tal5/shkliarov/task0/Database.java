@@ -1,6 +1,7 @@
 package com.epam.tal5.shkliarov.task0;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Database {
@@ -67,13 +68,44 @@ public class Database {
     }
 
     public static int getHighestMarksSum(Abiturient[] abiturients) {
-        return 0;
+        int higher = 0;
+        for (int i = 0; i < abiturients.length; i++) {
+            if (abiturients[i].getMarksSum() > higher) {
+                higher = abiturients[i].getMarksSum();
+            }
+        }
+        return higher;
     }
 
-    @Override
-    public String toString() {
-
+    public static void getAbiturientsWithHighestSum(Abiturient[] abiturients,int n) {
+        int highest = getHighestMarksSum(abiturients);
+        ArrayList<Abiturient> goodGuys = new ArrayList<Abiturient>();
+        for (int i = 0; i < abiturients.length; i++) {
+            if (abiturients[i].getMarksSum() == highest){
+                goodGuys.add(abiturients[i]);
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            System.out.println(goodGuys.toArray()[i].toString());
+        }
     }
+
+    public static void getAbiturientsWithHalfOfNormalSum(Abiturient[] abiturients) {
+        int halfOfNormal = (int) getNormalMarksSum() / 2;
+        for (int i = 0; i < abiturients.length; i++) {
+            if (abiturients[i].getMarksSum() == halfOfNormal){
+                System.out.println(abiturients[i].toString());
+            }
+        }
+    }
+
+
+
+
+    /*@Override
+   *//* public String toString() {
+
+    }*/
 
 
 
