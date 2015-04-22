@@ -11,11 +11,11 @@ public class Demo {
         }
         System.out.println();
         Database.getAbituriensWithBadMarks(database.getAbiturients());
-
+        System.out.println();
         Database.getAbiturientsWithGoodMarksSum(database.getAbiturients());
-
+        System.out.println();
         Database.getAbiturientsWithHalfOfNormalSum(database.getAbiturients());
-
+        System.out.println();
         Database.getAbiturientsWithHighestSum(database.getAbiturients());
 
     }
