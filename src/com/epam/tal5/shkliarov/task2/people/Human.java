@@ -102,8 +102,8 @@ public abstract class Human implements BeingHuman {
     public Human haveARelationship(Human human) throws IOException {
         if (human == null)
             throw new IllegalArgumentException("Human can't be in a relationship with itself");
-        if (almostHappyEnd(this, human))
-            if (genderMatch(this, human))
+        if (almostHappyEnd(this, human)) {
+            if (genderMatch(this, human)) {
                 if (this.isGender()) {
                     Woman woman = new Woman(human.getName(), human.getSurname(), human.getHeight(), human.getWeight());
                     System.out.println("Congratulations, you'll have a baby!");
@@ -113,6 +113,8 @@ public abstract class Human implements BeingHuman {
                     System.out.println("Congratulations, you'll have a baby!");
                     return woman.bearABaby(human);
                 }
+            }
+        }
         System.out.println("No happy end...");
         return null;
     }
