@@ -106,6 +106,10 @@ public class ConsoleApp {
     }
 
     public static void printAResult(Human human) {
+        if (human == null) {
+            System.out.println("Sorry, no baby here..");
+            return;
+        }
         if (human.isGender()) {
             human = new Man(human.getName(), human.getSurname(), human.getHeight(), human.getWeight());
             System.out.println(human.toString());

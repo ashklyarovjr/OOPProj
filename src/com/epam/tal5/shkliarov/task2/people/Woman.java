@@ -29,6 +29,7 @@ public class Woman extends Human {
             height = (float) 0.1 * this.getHeight();
             weight = (float) 0.1 * this.getWeight();
         }
+
         if (gender)
             return new Man(name,surname,height,weight);
         return new Woman(name,surname,height,weight);
@@ -49,7 +50,7 @@ public class Woman extends Human {
         if (human == null)
             throw new IllegalArgumentException("Human hates to be lonely");
         double randomProbability = new Random().nextDouble();
-        if (this.isGender() == human.isGender()) {
+        if (genderMatch(this, human)) {
             if (randomProbability <= 0.05) {
                 System.out.println("Enduring presence is OK");
                 return true;

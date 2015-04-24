@@ -61,18 +61,35 @@ public abstract class Human implements BeingHuman {
         this.weight = weight;
     }
 
+    protected static boolean genderMatch(Human human1, Human human2) {
+        return human1.isGender() != human2.isGender();
+    }
+
+    protected static boolean almostHappyEnd(Human human1, Human human2) {
+        return human1.speak(human2) && human1.endurePresence(human2) && human1.spendTimeTogether(human2);
+    }
+
+    protected static boolean differenceIsLessThan10Percent(Human human1, Human human2) {
+        float difference = abs(human1.getHeight() - human2.getHeight());
+        return (difference < (0.1 * human1.getHeight()) || difference < (0.1 * human2.getHeight()));
+    }
+
+    protected static boolean differenceIsMoreThan10Percent(Human human1, Human human2) {
+        float difference = abs(human1.getHeight() - human2.getHeight());
+        return difference >= (0.1 * human1.getHeight()) || difference >= (0.1 * human2.getHeight());
+    }
+
     @Override
     public boolean spendTimeTogether(Human human) {
         if (human == null)
             throw new IllegalArgumentException("Human hates to be lonely");
-        float difference = abs(this.getHeight() - human.getHeight());
         double probability = new Random().nextDouble();
-        if (difference < (0.1 * this.getHeight()) || difference < (0.1 * human.getHeight())) {
+        if (differenceIsLessThan10Percent(this, human)) {
             if (probability <= 0.95) {
                 System.out.println("Spending time together is OK");
                 return true;
             }
-        } else if (difference >= (0.1 * this.getHeight()) || difference >= (0.1 * human.getHeight())) {
+        } else if (differenceIsMoreThan10Percent(this, human)) {
             if (probability <= 0.85) {
                 System.out.println("Spending time together is OK");
                 return true;
@@ -85,8 +102,8 @@ public abstract class Human implements BeingHuman {
     public Human haveARelationship(Human human) throws IOException {
         if (human == null)
             throw new IllegalArgumentException("Human can't be in a relationship with itself");
-        if (this.speak(human) && this.endurePresence(human) && this.spendTimeTogether(human))
-            if (this.isGender() != human.isGender())
+        if (almostHappyEnd(this, human))
+            if (genderMatch(this, human))
                 if (this.isGender()) {
                     Woman woman = new Woman(human.getName(), human.getSurname(), human.getHeight(), human.getWeight());
                     System.out.println("Congratulations, you'll have a baby!");
