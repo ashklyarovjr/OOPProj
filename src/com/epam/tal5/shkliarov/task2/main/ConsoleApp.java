@@ -30,7 +30,7 @@ public class ConsoleApp {
                         printAResult(human1.haveARelationship(human2));
                         break;
                     case 'M':
-                        human2 = initAWoman();
+                        human2 = initAMan();
 
                         System.out.println(human1.toString());
                         System.out.println(human2.toString());
@@ -110,12 +110,6 @@ public class ConsoleApp {
             System.out.println("Sorry, no baby here..");
             return;
         }
-        if (human.isGender()) {
-            human = new Man(human.getName(), human.getSurname(), human.getHeight(), human.getWeight());
-            System.out.println(human.toString());
-        } else {
-            human = new Woman(human.getName(), human.getSurname(), human.getHeight(), human.getWeight());
-            System.out.println(human.toString());
-        }
+        System.out.println(human.toString());
     }
 }

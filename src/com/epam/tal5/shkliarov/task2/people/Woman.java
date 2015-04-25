@@ -11,17 +11,18 @@ public class Woman extends Human {
         super(false, name, surname, height, weight);
     }
 
+    private static String babyNameRequest() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Please, enter baby's name:");
+        return reader.readLine();
+    }
+
     public Human bearABaby(Human dad) throws IOException {
-        String surname;
         float height;
         float weight;
         Random random = new Random();
+        String surname = dad.getSurname();
         boolean gender = random.nextDouble() > 0.5;
-
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Please, enter baby's name:");
-        String name = reader.readLine();
-        surname = dad.getSurname();
         if (dad.isGender() == gender) {
             height = (float) 0.1 * dad.getHeight();
             weight = (float) 0.1 * dad.getWeight();
@@ -30,9 +31,12 @@ public class Woman extends Human {
             weight = (float) 0.1 * this.getWeight();
         }
 
-        if (gender)
-            return new Man(name,surname,height,weight);
-        return new Woman(name,surname,height,weight);
+        if (gender){
+            System.out.println("It's a boy!");
+            return new Man(babyNameRequest(),surname,height,weight);
+        }
+        System.out.println("It's a girl!");
+        return new Woman(babyNameRequest(),surname,height,weight);
     }
 
     @Override
@@ -50,13 +54,12 @@ public class Woman extends Human {
         if (human == null)
             throw new IllegalArgumentException("Human hates to be lonely");
         double randomProbability = new Random().nextDouble();
-        if (genderMatch(this, human)) {
+        if (!genderMatch(this, human)) {
             if (randomProbability <= 0.05) {
                 System.out.println("Enduring presence is OK");
                 return true;
             }
-        }
-        else {
+        } else {
             if (randomProbability <= 0.7) {
                 System.out.println("Enduring presence is OK");
                 return true;

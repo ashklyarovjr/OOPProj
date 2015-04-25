@@ -105,13 +105,11 @@ public abstract class Human implements BeingHuman {
         if (almostHappyEnd(this, human)) {
             if (genderMatch(this, human)) {
                 if (this.isGender()) {
-                    Woman woman = new Woman(human.getName(), human.getSurname(), human.getHeight(), human.getWeight());
                     System.out.println("Congratulations, you'll have a baby!");
-                    return woman.bearABaby(this);
+                    return ((Woman) human).bearABaby(this);
                 } else {
-                    Woman woman = new Woman(this.getName(), this.getSurname(), this.getHeight(), this.getWeight());
                     System.out.println("Congratulations, you'll have a baby!");
-                    return woman.bearABaby(human);
+                    return ((Woman) this).bearABaby(human);
                 }
             }
         }

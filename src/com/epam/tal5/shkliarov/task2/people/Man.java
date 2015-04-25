@@ -13,8 +13,8 @@ public class Man extends Human implements BeingHuman {
         if (human == null)
             throw new IllegalArgumentException("Human can't speak to itself");
         double randomProbability = new Random().nextDouble();
-        if (this == human)
-            if (randomProbability < 0.5)
+        if (!genderMatch(this, human))
+            if (randomProbability <= 0.5)
                 return false;
         System.out.println("Speaking is OK");
         return true;
@@ -25,7 +25,7 @@ public class Man extends Human implements BeingHuman {
         if (human == null)
             throw new IllegalArgumentException("Human hates to be lonely");
         double randomProbability = new Random().nextDouble();
-        if (this.isGender() == human.isGender()) {
+        if (!genderMatch(this,human)) {
             if (randomProbability <= 0.056) {
                 System.out.println("Enduring presence is OK");
                 return true;
