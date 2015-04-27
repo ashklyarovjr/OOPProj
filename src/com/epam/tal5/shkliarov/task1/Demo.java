@@ -26,7 +26,6 @@ public class Demo {
         System.out.println();
 
         container.priceSort();
-        System.out.println();
 
         container.printAll();
     }
