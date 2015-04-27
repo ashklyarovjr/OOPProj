@@ -124,7 +124,6 @@ public abstract class Human implements BeingHuman {
                 ", Name = '" +  + '\'' +
                 ", Surname = '" + surname + '\'' +
                 ", Height = " + height +
-                ", Weight = " + weight +
-                '}';
+                ", Weight = " + weight;
     }
 }
