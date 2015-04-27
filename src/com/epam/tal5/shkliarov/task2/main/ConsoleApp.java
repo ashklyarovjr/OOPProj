@@ -63,6 +63,10 @@ public class ConsoleApp {
         }
     }
 
+
+    /**
+     * New Man object initiation
+     * */
     public static Man initAMan() throws IOException {
         String name;
         String surname;
@@ -84,6 +88,10 @@ public class ConsoleApp {
         return new Man(name,surname,height,weight);
     }
 
+
+    /**
+     * New Woman object initiation
+     * */
     public static Woman initAWoman() throws IOException {
         String name;
         String surname;
@@ -105,6 +113,10 @@ public class ConsoleApp {
         return new Woman(name,surname,height,weight);
     }
 
+    /**
+     * Printing a result of operation with humans through toString method
+     * @param human takes any link of Human type
+     * */
     public static void printAResult(Human human) {
         if (human == null) {
             System.out.println("Sorry, no baby here..");

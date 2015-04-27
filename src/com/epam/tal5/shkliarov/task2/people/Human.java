@@ -61,14 +61,26 @@ public abstract class Human implements BeingHuman {
         this.weight = weight;
     }
 
+    /**
+     * Method simplifies check of gender match
+     * @return true if gender of first human doesn't equal to second human
+     * */
     protected static boolean genderMatch(Human human1, Human human2) {
         return human1.isGender() != human2.isGender();
     }
 
+    /**
+     * Method simplifies all three conditions check
+     *@return true if all conditions are true
+     * */
     protected static boolean almostHappyEnd(Human human1, Human human2) {
         return human1.speak(human2) && human1.endurePresence(human2) && human1.spendTimeTogether(human2);
     }
 
+    /**
+     * Next two methods simplify check of difference between humans' height
+     * @return true if one of conditions is true
+     * */
     protected static boolean differenceIsLessThan10Percent(Human human1, Human human2) {
         float difference = abs(human1.getHeight() - human2.getHeight());
         return (difference < (0.1 * human1.getHeight()) || difference < (0.1 * human2.getHeight()));
