@@ -25,4 +25,12 @@ public abstract class Lamp {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "Lamp: " +
+                "Price: " + price +
+                ", Name: '" + name + '\'' +
+                '}';
+    }
 }

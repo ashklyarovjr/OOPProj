@@ -8,6 +8,7 @@ public class LEDLamp extends Lamp {
     public LEDLamp(int price, double power) {
         super(price, "LEDLamp");
         this.power = power;
+        quantity++;
     }
 
     public static int getQuantity() {
@@ -20,5 +21,12 @@ public class LEDLamp extends Lamp {
 
     public void setPower(double power) {
         this.power = power;
+    }
+
+    @Override
+    public String toString() {
+        return "LEDLamp: " +
+                "Price: "  + getPrice() + " " +
+                "Power: " + power;
     }
 }
