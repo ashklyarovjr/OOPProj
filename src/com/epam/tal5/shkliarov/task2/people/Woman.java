@@ -17,6 +17,11 @@ public class Woman extends Human {
         return reader.readLine();
     }
 
+
+    /**
+     * Determines who will bear, boy or girl
+     *
+     * */
     public Human bearABaby(Human dad) throws IOException {
         float height;
         float weight;
