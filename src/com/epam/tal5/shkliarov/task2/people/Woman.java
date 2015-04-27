@@ -21,22 +21,17 @@ public class Woman extends Human {
         float height;
         float weight;
         Random random = new Random();
-        String surname = dad.getSurname();
         boolean gender = random.nextDouble() > 0.5;
-        if (dad.isGender() == gender) {
-            height = (float) 0.1 * dad.getHeight();
-            weight = (float) 0.1 * dad.getWeight();
-        } else {
-            height = (float) 0.1 * this.getHeight();
-            weight = (float) 0.1 * this.getWeight();
-        }
-
         if (gender){
             System.out.println("It's a boy!");
-            return new Man(babyNameRequest(),surname,height,weight);
+            height = (float) 0.1 * dad.getHeight();
+            weight = (float) 0.1 * dad.getWeight();
+            return new Man(babyNameRequest(),dad.getSurname(),height,weight);
         }
         System.out.println("It's a girl!");
-        return new Woman(babyNameRequest(),surname,height,weight);
+        height = (float) 0.1 * this.getHeight();
+        weight = (float) 0.1 * this.getWeight();
+        return new Woman(babyNameRequest(),dad.getSurname(),height,weight);
     }
 
     @Override
