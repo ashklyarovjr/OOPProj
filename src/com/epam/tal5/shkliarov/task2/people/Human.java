@@ -104,15 +104,10 @@ public abstract class Human implements BeingHuman {
             throw new IllegalArgumentException("Human can't be in a relationship with itself");
         if (almostHappyEnd(this, human)) {
             if (genderMatch(this, human)) {
-                if (this.isGender()) {
-                    System.out.println("Congratulations, you'll have a baby!");
-                    return ((Woman) human).bearABaby(this);
-                } else {
-                    System.out.println("Congratulations, you'll have a baby!");
-                    return ((Woman) this).bearABaby(human);
+                System.out.println("Congratulations, you'll have a baby!");
+                return this.isGender() ? ((Woman) human).bearABaby(this) : ((Woman) this).bearABaby(human);
                 }
             }
-        }
         System.out.println("No happy end...");
         return null;
     }
